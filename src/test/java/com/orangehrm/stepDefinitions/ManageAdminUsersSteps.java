@@ -1,5 +1,6 @@
 package com.orangehrm.stepDefinitions;
 
+import com.orangehrm.config.ConfigReader;
 import com.orangehrm.config.DriverFactory;
 import com.orangehrm.pages.AdminCreationPage;
 import com.orangehrm.pages.AdminPage;
@@ -61,7 +62,8 @@ public class ManageAdminUsersSteps {
 
     @When("the user searches for the newly added admin")
     public void theUserSearchesForTheNewlyAddedAdmin() {
-        adminObject.searchByUsername();
+        String currentUsername = adminObject.searchByUsername();
+        Assert.assertEquals(currentUsername, ConfigReader.get("username"));
     }
 
     @And("the user deletes the user")

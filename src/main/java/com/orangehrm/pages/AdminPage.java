@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 
 public class AdminPage extends BasePage {
 
@@ -41,13 +40,12 @@ public class AdminPage extends BasePage {
         clickButton(addAdminButton);
     }
 
-    public void searchByUsername() {
+    public String searchByUsername() {
         setInputText(usernameSearchField, ConfigReader.get("username"));
         clickButton(searchButton);
 
         WebElement usernameCell = getCellFromRow(tableBody, 0, 1);
-        String usernameOnRow = usernameCell.getText();
-        Assert.assertEquals(usernameOnRow, ConfigReader.get("username"));
+        return usernameCell.getText();
     }
 
     public void deleteUserFromTable() {
